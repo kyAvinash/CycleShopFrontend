@@ -148,7 +148,7 @@ const Header = () => {
                 </>
               ) : (
                 <li className="nav-item">
-                  <NavLink className="nav-link text-white" to="/login">
+                  <NavLink className="nav-link text-white" to="/">
                     <FaUser /> Login
                   </NavLink>
                 </li>
