@@ -11,8 +11,6 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
       <Router>
-        {" "}
-        {/* Only wrap here */}
         <App />
       </Router>
     </Provider>
