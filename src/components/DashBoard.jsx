@@ -32,12 +32,22 @@ const DashBoard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userResponse = await fetch("https://cycle-shop-backend-zeta.vercel.app/users/me", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        });
-        const ordersResponse = await fetch("https://cycle-shop-backend-zeta.vercel.app/orders", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        });
+        const userResponse = await fetch(
+          "https://cycle-shop-backend-zeta.vercel.app/users/me",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        const ordersResponse = await fetch(
+          "https://cycle-shop-backend-zeta.vercel.app/orders",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
 
         if (userResponse.ok) {
           const userData = await userResponse.json();
@@ -92,9 +102,14 @@ const DashBoard = () => {
       });
 
       if (response.ok) {
-        const updatedUser = await fetch("https://cycle-shop-backend-zeta.vercel.app/users/me", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }).then((res) => res.json());
+        const updatedUser = await fetch(
+          "https://cycle-shop-backend-zeta.vercel.app/users/me",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        ).then((res) => res.json());
 
         setAddresses(updatedUser.addresses || []);
         setShowAddressForm(false);
@@ -132,9 +147,14 @@ const DashBoard = () => {
       );
 
       if (response.ok) {
-        const updatedUser = await fetch("https://cycle-shop-backend-zeta.vercel.app/users/me", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }).then((res) => res.json());
+        const updatedUser = await fetch(
+          "https://cycle-shop-backend-zeta.vercel.app/users/me",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        ).then((res) => res.json());
 
         setAddresses(updatedUser.addresses || []);
         toast.success("Default address updated successfully!");
@@ -167,9 +187,14 @@ const DashBoard = () => {
       );
 
       if (response.ok) {
-        const updatedUser = await fetch("https://cycle-shop-backend-zeta.vercel.app/users/me", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }).then((res) => res.json());
+        const updatedUser = await fetch(
+          "https://cycle-shop-backend-zeta.vercel.app/users/me",
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        ).then((res) => res.json());
 
         setAddresses(updatedUser.addresses || []);
         toast.success("Address deleted successfully!");
@@ -186,14 +211,17 @@ const DashBoard = () => {
 
   const handleSaveProfile = async () => {
     try {
-      const response = await fetch("https://cycle-shop-backend-zeta.vercel.app/users/me", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(userData),
-      });
+      const response = await fetch(
+        "https://cycle-shop-backend-zeta.vercel.app/users/me",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(userData),
+        }
+      );
 
       if (response.ok) {
         const updatedUser = await response.json();
@@ -230,7 +258,10 @@ const DashBoard = () => {
         <div className="card p-3 mb-4">
           <div className="d-flex align-items-center">
             <img
-              src={userData.profilePicture || "/default-avatar.png"}
+              src={
+                userData.profilePicture ||
+                "https://img.icons8.com/?size=100&id=HDvFsY01Y3K1&format=png&color=000000"
+              }
               alt="Profile"
               className="rounded-circle me-3"
               style={{ width: "80px", height: "80px", objectFit: "cover" }}
@@ -434,13 +465,14 @@ const DashBoard = () => {
                       aria-expanded="true"
                       aria-controls={`orderCollapse${index}`}
                     >
-                      Order #{order._id} - ₹{order.totalAmount} {" "} - {" "}<span
-                      className={`badge bg-${
-                        order.status === "Cancelled" ? "danger" : "primary"
-                      }`}
-                    >
-                      {order.status}
-                    </span>
+                      Order #{order._id} - ₹{order.totalAmount} -{" "}
+                      <span
+                        className={`badge bg-${
+                          order.status === "Cancelled" ? "danger" : "primary"
+                        }`}
+                      >
+                        {order.status}
+                      </span>
                     </button>
                   </h2>
                   <div
